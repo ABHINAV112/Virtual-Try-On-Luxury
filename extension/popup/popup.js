@@ -1,10 +1,11 @@
 let error = false;
 let imageSrcs;
 let imageIndex = 0;
-
+let dp = false;
 const imageCarouselImg = document.getElementById("image-carousel-img");
 chrome.storage.local.get(["key"], function (result) {
   if (result.key) {
+    dp = result.key;
     document.getElementById("display-pic").src = result.key;
     document.getElementById("pic-error").classList.add("hide");
   } else {
@@ -85,8 +86,17 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 });
 
 const makeApiCall = async () => {
-  const url = "https://avatars.dicebear.com/api/human/12321.svg";
-  const res = await fetch(url);
+  const url = "http://192.168.0.103:10000/api";
+  const formdata = new FormData();
+  formdata.append("clotheUrl", imageSrcs[imageIndex]);
+  formdata.append("human", dp);
+
+  const requestOptions = {
+    method: "POST",
+    body: formdata,
+  };
+
+  const res = await fetch(url, requestOptions);
   const blob = await res.blob();
   const imageObjectURL = URL.createObjectURL(blob);
   return imageObjectURL;

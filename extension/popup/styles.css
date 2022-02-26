@@ -61,8 +61,8 @@ input[type="file"] {
 }
 
 #image-carousel-img{
-  width: 320px;
-  height: 480px;
+  width: 240px;
+
 }
 .image-carousel-buttons{
   display: flex;
@@ -92,4 +92,9 @@ button:hover{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 50%;
+}
+
+#result-img{
+  width: 240px;
 }
