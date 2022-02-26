@@ -12,6 +12,7 @@ from datauri import DataURI
 import cv2
 from pipeline.final_step import main as final
 from config import UPLOAD_PATH,RESULT_PATH
+from pipeline.segmentation import make_body_mask
 
 # Flask Config
 app = Flask(__name__)
@@ -44,6 +45,7 @@ def endpoint():
 
     open_pose(human_filepath)
     human_parser(human_filepath)
+    make_body_mask()
     generate_clothe_mask(clothe_path)
     final("GMM")
     final("TOM")

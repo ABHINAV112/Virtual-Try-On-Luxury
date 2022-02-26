@@ -9,6 +9,8 @@ import torch
 import torch.nn as nn
 from torchvision import transforms
 import cv2
+import pixellib
+from pixellib.torchbackend.instance import instanceSegmentation
 from config import HUMAN_PARSING_MODELS_PATH,UPLOAD_PATH
 
 from pipeline.net.pspnet import PSPNet
@@ -25,6 +27,26 @@ models = {
 
 backend = "squeezenet"
 
+# def segmentation(image_path):
+#     ins = instanceSegmentation()
+#     ins.load_model(SEGMENT_PATH)
+#     output_path = f'{UPLOAD_PATH}/image-mask/human.png'
+#     ins.segmentImage(image_path, output_image_name=output_path)
+
+#     img = cv2.imread(output_path)
+#     rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+#     hsv_img = cv2.cvtColor(rgb_img, cv2.COLOR_RGB2HSV)
+#     light_blue = (90, 70, 50)
+#     dark_blue = (128, 255, 255)
+
+#     mask = cv2.inRange(hsv_img, light_blue, dark_blue)
+#     result = cv2.bitwise_and(img, img, mask=mask)
+#     result = cv2.cvtColor(result, cv2.COLOR_RGB2GRAY)
+#     for i,val in enumerate(result):
+#         for j,val_ in enumerate(val):
+#             if result[i][j]!=0:
+#                 result[i][j]=255
+#     cv2.imwrite(output_path, result)
 
 def build_network(snapshot, backend):
     epoch = 0
@@ -70,12 +92,12 @@ def show_image(img, pred):
     cv2.imwrite(f'{UPLOAD_PATH}/image-parse-new/human.png', pred)    
     print(pred.shape)
     
-    # TODO: make better
-    pred_mask = pred*255
-    for i,val in enumerate(pred_mask):
-        for j,val_j in enumerate(val):
-            pred_mask[i][j] = 0 if val_j==0 else 255
-    cv2.imwrite(f'{UPLOAD_PATH}/image-mask/human.png', pred_mask)    
+    # # TODO: make better
+    # pred_mask = pred*255
+    # for i,val in enumerate(pred_mask):
+    #     for j,val_j in enumerate(val):
+    #         pred_mask[i][j] = 0 if val_j==0 else 255
+    # cv2.imwrite(f'{UPLOAD_PATH}/image-mask/human.png', pred_mask)    
 
 def human_parser(image_path):
     snapshot = os.path.join(HUMAN_PARSING_MODELS_PATH, backend, 'PSPNet_last')
@@ -92,4 +114,7 @@ def human_parser(image_path):
         pred = pred.cpu().numpy().transpose(1, 2, 0)
         pred = np.asarray(np.argmax(pred, axis=2), dtype=np.uint8).reshape((256, 256, 1))
         show_image(img, pred)
+
+    # segmentation(image_path)
+    
 
