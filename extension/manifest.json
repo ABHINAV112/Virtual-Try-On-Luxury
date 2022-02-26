@@ -10,5 +10,10 @@
   "action": {
     "default_popup": "popup/popup.html"
   },
-  "options_page": "options/options.html"
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["content-script.js"]
+    }
+  ]
 }
