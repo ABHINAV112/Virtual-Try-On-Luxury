@@ -2,5 +2,13 @@
   "name": "GetDressed",
   "description": "Chrome extension to dress yourself",
   "version": "1.0",
-  "manifest_version": 3
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "options_page": "options/options.html"
 }

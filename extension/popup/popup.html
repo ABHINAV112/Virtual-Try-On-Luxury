@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <!-- <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="styles.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+  </head>
+  <body>
+    <div class="mdc-tab-bar" role="tablist">
+      <div class="mdc-tab-scroller">
+        <div class="mdc-tab-scroller__scroll-area">
+          <div class="mdc-tab-scroller__scroll-content">
+            <button id="try-cloth-button" class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+              <span class="mdc-tab__content">
+                <span class="mdc-tab__icon material-icons" aria-hidden="true">favorite</span>
+              </span>
+              <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+              </span>
+              <span class="mdc-tab__ripple"></span>
+            </button>
+            <button id="profile-button" class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+              <span class="mdc-tab__content">
+              <span class="tab__icon material-icons" aria-hidden="true">person</span>
+              </span>
+              <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+              </span>
+              <span class="mdc-tab__ripple"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="try-cloth">Please upload a picture of yourself </div>
+    <div id="profile"  class="hide"> cringge</div>
+    
+    <script src="popup.js"></script>
+  </body>
+</html>
