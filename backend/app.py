@@ -1,35 +1,43 @@
-from flask import Flask, request, send_file
+from flask import Flask, request
 from flask_cors import CORS
-from werkzeug.utils import secure_filename
 import os
 from PIL import Image
+import json
 import requests
+from pipeline.openpose import open_pose
+from pipeline.human_parser import human_parser
+from pipeline.clothe_mask import generate_clothe_mask
 
 # Flask Config
 app = Flask(__name__)
-app.config["DEBUG"] = False
+app.config["DEBUG"] = True
 CORS(app)
 
 # Environment Variables
 PORT = int(os.environ.get("PORT", 10000))
-DATA_DIR = "../data"
 
-@app.route("/api", methods=["GET"])
+UPLOAD_PATH = f"{os.getcwd()}/data"
+
+@app.route("/api", methods=["POST"])
 def endpoint():
-    params = request.args.to_dict()
-    if "human_image" in params:
-        f = params['human_image']  # Image
-        filename = secure_filename("photo.jpeg")
-        destination="/".join([DATA_DIR, filename])
-        f.save(destination)
-        human_image = Image.open(destination)
+    req_file = request.files["human"]
+    cloth_url = request.form["clotheUrl"]
+    clothe_path = f"{UPLOAD_PATH}/cloth_img.jpg"
+    human_filename = req_file.filename
+    human_filepath = f"{UPLOAD_PATH}/{human_filename}"
+    req_file.save(human_filepath) 
+    response = requests.get(cloth_url)
+    with open(clothe_path, "wb") as f:
+        f.write(response.content)
 
-    if "clothes_image" in params:
-        clothes_image = requests.get(params["clothes_image"], stream=True).raw
-
-    # Process File
-    
-    return send_file(destination, mimetype='image/gif')
+    open_pose_json = open_pose(human_filepath)
+    human_parser(human_filepath)
+    generate_clothe_mask(clothe_path)
+    print(open_pose_json)
+    return json.dumps(open_pose_json)
 
 if __name__ == "__main__":
+    if(not os.path.isdir(UPLOAD_PATH)):
+        os.makedirs(UPLOAD_PATH)
+
     app.run(host="0.0.0.0", port=PORT)
