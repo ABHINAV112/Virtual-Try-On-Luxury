@@ -14,7 +14,7 @@
           <div class="mdc-tab-scroller__scroll-content">
             <button id="try-cloth-button" class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
               <span class="mdc-tab__content">
-                <span class="mdc-tab__icon material-icons" aria-hidden="true">favorite</span>
+                <span class="mdc-tab__icon material-icons" aria-hidden="true">face</span>
               </span>
               <span class="mdc-tab-indicator mdc-tab-indicator--active">
                 <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -23,7 +23,7 @@
             </button>
             <button id="profile-button" class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
               <span class="mdc-tab__content">
-              <span class="tab__icon material-icons" aria-hidden="true">person</span>
+              <span class="mdc-tab__icon material-icons" aria-hidden="true">person</span>
               </span>
               <span class="mdc-tab-indicator mdc-tab-indicator--active">
                 <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -35,8 +35,39 @@
       </div>
     </div>
 
-    <div id="try-cloth">Please upload a picture of yourself </div>
-    <div id="profile"  class="hide"> cringge</div>
+
+    <div id="try-cloth" class="flex">
+      <div id="pic-error">
+        Please upload a picture of yourself
+      </div>
+      <div id="images">
+        <div id="loading">
+          Loading
+        </div>
+        <div id="image-carousel">
+          <img id="image-carousel-img">
+          <div class="image-carousel-buttons">
+            <button id="decrement-image"><</button>
+            <button id="try-on" class="try-it-on">Try it on</button>
+            <button id="increment-image">></button>
+          </div>
+        </div>
+      </div>
+     </div>
+
+    <div id="api-result" class="hide">
+        <div id="loader" class="loader"></div>
+        <img id="result-img">
+    </div>
+
+      
+    <div id="profile"  class="profile-container hide">
+      <img id="display-pic">
+      <label for="file-upload" class="custom-file-upload">
+        Upload New Photo
+    </label>
+    <input id="file-upload"  accept="image/*" type="file"/>
+    </div>
     
     <script src="popup.js"></script>
   </body>
