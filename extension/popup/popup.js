@@ -50,6 +50,7 @@ fileUpload.addEventListener("change", (e) => {
   oFReader.readAsDataURL(image);
 
   oFReader.onload = function (oFREvent) {
+    dp = oFREvent.target.result;
     document.getElementById("display-pic").src = oFREvent.target.result;
     chrome.storage.local.set({ key: oFREvent.target.result });
   };

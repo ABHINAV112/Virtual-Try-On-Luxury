@@ -4,7 +4,10 @@ import numpy as np
 from random import randint
 import argparse
 import json 
-from config import OPENPOSE_BASEURL
+from config import OPENPOSE_BASEURL,UPLOAD_PATH
+import os
+
+
 
 def open_pose(image_path):
     image1 = cv2.imread(image_path)
@@ -226,6 +229,8 @@ def open_pose(image_path):
                     "hand_left_keypoints": []
                 }]}
 
+    with open(f"{UPLOAD_PATH}/pose/human_keypoints.json", 'w') as f:
+        json.dump(json_data, f)
     return json_data
 
 

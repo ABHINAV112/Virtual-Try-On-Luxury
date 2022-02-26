@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 from torchvision import transforms
 import cv2
-from config import HUMAN_PARSING_MODELS_PATH
+from config import HUMAN_PARSING_MODELS_PATH,UPLOAD_PATH
 
 from pipeline.net.pspnet import PSPNet
 
@@ -67,7 +67,7 @@ def show_image(img, pred):
     # pred = cv2.rotate(pred, cv2.cv2.ROTATE_90_CLOCKWISE)
     
     pred = cv2.resize(pred, ((192, 256)))
-    cv2.imwrite('data/image_parse.png', pred)    
+    cv2.imwrite(f'{UPLOAD_PATH}/image-parse-new/human.png', pred)    
     print(pred.shape)
     
     # TODO: make better
@@ -75,7 +75,7 @@ def show_image(img, pred):
     for i,val in enumerate(pred_mask):
         for j,val_j in enumerate(val):
             pred_mask[i][j] = 0 if val_j==0 else 255
-    cv2.imwrite('data/image_mask.png', pred_mask)    
+    cv2.imwrite(f'{UPLOAD_PATH}/image-mask/human.png', pred_mask)    
 
 def human_parser(image_path):
     snapshot = os.path.join(HUMAN_PARSING_MODELS_PATH, backend, 'PSPNet_last')
