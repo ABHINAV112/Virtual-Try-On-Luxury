@@ -1,0 +1,6 @@
+{
+  "name": "GetDressed",
+  "description": "Chrome extension to dress yourself",
+  "version": "1.0",
+  "manifest_version": 3
+}
