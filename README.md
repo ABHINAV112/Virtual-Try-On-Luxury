@@ -2,22 +2,19 @@
   <img src="assets/logo.jpg" />
 </p>
 
-<h2 align="center">IndiansSolveClothing</h2>
-<h2 align="center">Virtual Try-On Luxury</h2> 
-<h2 align="center">Runners Up iNTUition v8.0</h2>
+<h3 align="center">IndiansSolveClothing</h2>
+<h3 align="center">Virtual Try-On Luxury</h2> 
+<h3 align="center">Runners Up iNTUition v8.0</h2>
 
 ---
-<br>
 
 # Inspiration
 Throughout the pandemic, virtual try on has become a topic of interest among everyone. Online shopping for clothes is very fascinating as we can find different products and brands from various sellers all of them in the same place. Choosing the appropriate designs, sizes, and fits may make or break a purchase. This brings the issue of trying on garments to light, as dressing rooms are the focal point of real-life shopping trips. With technology that can realistically clothe an individual virtually, can make re-creating the in-store experience online achievable. Our team was intrigued by this concept, so we created our own extension: ‘VTL', where you can virtually try on clothes and experience fashion at its best.
 
-<br>
 
 # What it does
 Using our chrome extension VTL, users can select their favorite clothes and virtually try them on. VTL is really about the experience, and we believe that a better experience—one that provides a more realistic visualization of clothing—will boost buyer confidence, allowing them to make an appropriate fashion decision.
 
-<br>
 
 # How we built it
 Our solution comprises of these major modules:
@@ -41,16 +38,12 @@ Our solution comprises of these major modules:
 
 ![alt text](assets/flow.png)
 
-<br>
-
-
 # Demo
 
 * [Youtube](https://www.youtube.com/watch?v=Mey5g_ULi2E)
-<br>
+
 * [Devpost](https://devpost.com/software/indianssolveclothing)
 
-<br>
 
 # What's next for VTL
 * Extend the application to support multiple clothing types (trousers, masks, accessories, etc)
@@ -59,7 +52,6 @@ Our solution comprises of these major modules:
 
 * Improve robustness by checking for bad input images
 
-<br>
 
 # Team Members
 * [Abhinav](https://github.com/ABHINAV112)
@@ -70,7 +62,6 @@ Our solution comprises of these major modules:
 
 * [Kartikeya](https://github.com/Kartikeya2001)
 
-<br>
 
 # References
 
