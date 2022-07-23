@@ -62,7 +62,7 @@ Our solution comprises of these major modules:
 
 * [Kartikeya](https://github.com/Kartikeya2001)
 
-
+      
 # References
 
 * [Pose Estimation](https://github.com/CMU-Perceptual-Computing-Lab/openpose)
